@@ -1,10 +1,11 @@
-const { default: Register } = require("@/Components/Register")
+import SingUp from "@/Components/Register";
+
 
 const Singup = () => {
     return(
         <>
             <div className="min-h-screen  place-items-center pt-40 mb-5">
-                <Register/>
+                <SingUp/>
             </div>
         </>
     )

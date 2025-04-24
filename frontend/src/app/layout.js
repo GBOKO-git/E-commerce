@@ -3,7 +3,7 @@ import "./globals.css";
 import Header from "@/Components/Hearder";
 import Footer from "@/Components/Footer";
 import { Providers } from "@/Redux/Provider";
-
+import InitUser from "@/Redux/InitUsers";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -26,9 +26,12 @@ export default function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <Header/>
-        <Providers>{children}</Providers>
-        <Footer/>
+        <Providers>
+          <InitUser/>
+          <Header />
+          {children}
+          <Footer />
+        </Providers>
       </body>
     </html>
   );

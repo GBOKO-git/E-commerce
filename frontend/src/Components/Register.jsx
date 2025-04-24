@@ -1,13 +1,14 @@
 "use client"
 
-import { registerUser } from "@/Redux/usersSlice";
+import { registerUser } from "@/Redux/user/userActions";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 
 
 
-const Register = () => {
+const SingUp = () => {
   const router = useRouter();
  const dispatch = useDispatch();
  const [form, setForm] = useState({name:"", email:"", password:""});
@@ -97,12 +98,12 @@ const Register = () => {
           </button>
           <div className="text-sm font-medium text-gray-500 dark:text-gray-300">
           already registered?{" "}
-            <a
-              href="#"
+            <Link
+              href="/Login"
               className="text-blue-700 hover:underline dark:text-blue-500"
             >
               Login to your account
-            </a>
+            </Link>
           </div>
         </form>
       </div>
@@ -110,4 +111,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default SingUp;

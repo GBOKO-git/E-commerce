@@ -1,11 +1,12 @@
 "use client"
-import { loginUser } from "@/Redux/usersSlice";
+import { loginUser } from "@/Redux/user/userActions";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 
 
-const SingUp = () => {
+const LogIn = () => {
   const dispatch = useDispatch();
   const router = useRouter();
   const [form, setForm] = useState({email:"", password:""});
@@ -17,9 +18,10 @@ const SingUp = () => {
   const handleSubmit = async(e) => {
     e.preventDefault();
     const result = await dispatch(loginUser(form));
+    console.log("tester svoir result est dispo:", result)
 
     if (result.meta.requestStatus  === "fulfilled") {
-      router.push("http://localhost:3000");
+      router.push("http://localhost:3000/");
     } else{
       alert("Connexion échouée. Veuillez vérifier vos identifiants.");
     }
@@ -101,12 +103,12 @@ const SingUp = () => {
           </button>
           <div className="text-sm font-medium text-gray-500 dark:text-gray-300">
             Not registered?{" "}
-            <a
-              href="#"
+            <Link
+              href="/Register"
               className="text-blue-700 hover:underline dark:text-blue-500"
             >
               Create account
-            </a>
+            </Link>
           </div>
         </form>
       </div>
@@ -114,4 +116,4 @@ const SingUp = () => {
   );
 };
 
-export default SingUp;
+export default LogIn;

@@ -1,56 +1,21 @@
+import { RigthImage } from "./Images";
+
 const Rigth = () => {
   return (
     <>
-      <div>
+    {RigthImage.map((image,index) => (
+        <div key={index}>
         <div>
-          <a href="#">
-            <img
-              className="p-8 rounded-t-lg"
-              src="/next.svg"
-              alt="product image"
-            />
-          </a>
-        </div>
-        <div>
-          <a href="#">
-            <img
-              className="p-8 rounded-t-lg"
-              src="/next.svg"
-              alt="product image"
-            />
-          </a>
-        </div>
-
-        <div>
-          <a href="#">
-            <img
-              className="p-8 rounded-t-lg"
-              src="/next.svg"
-              alt="product image"
-            />
-          </a>
-        </div>
-
-        <div>
-          <a href="#">
-            <img
-              className="p-8 rounded-t-lg"
-              src="/next.svg"
-              alt="product image"
-            />
-          </a>
-        </div>
-
-        <div>
-          <a href="#">
-            <img
-              className="p-8 rounded-t-lg"
-              src="/next.svg"
-              alt="product image"
-            />
-          </a>
-        </div>
-      </div>
+            <a href="#">
+              <img
+                className=" w-full h-full"
+                src={image.Image}
+                alt={image.name}
+              />
+            </a>
+          </div>
+          </div>
+    ) )}
     </>
   );
 };
