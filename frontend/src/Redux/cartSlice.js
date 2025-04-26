@@ -49,12 +49,12 @@ const cartSlice = createSlice({
     },
 
     // Choisir le mode paiement
-    savePaymentMtehode: (state, action) => {
+    savePaymentMtehod: (state, action) => {
       state.paymentMethode = action.payload;
     },
 
     // Enregisytrer l'adresse de l'acheteur
-    saveShippinhgAddress: (state, action) => {
+    saveShippingAddress: (state, action) => {
       state.shippingAddress = action.payload;
     },
   },
@@ -65,9 +65,10 @@ export const {
   addToCart,
   removeToCart,
   clearCart,
-  savePaymentMtehode,
-  saveShippinhgAddress,
+  savePaymentMethod,
+  saveShippingAddress,
 } = cartSlice.actions;
+
 
 // Eport du reducer pour pouvoir l'utiliser dans le store
 export default cartSlice.reducer;

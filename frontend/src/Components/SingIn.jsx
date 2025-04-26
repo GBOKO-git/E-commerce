@@ -21,7 +21,7 @@ const LogIn = () => {
     console.log("tester svoir result est dispo:", result)
 
     if (result.meta.requestStatus  === "fulfilled") {
-      router.push("http://localhost:3000/");
+      router.push("/Accueil");
     } else{
       alert("Connexion échouée. Veuillez vérifier vos identifiants.");
     }
@@ -32,7 +32,7 @@ const LogIn = () => {
     <>
       <div className="w-full max-w-sm p-4 bg-white border border-gray-200 rounded-lg shadow-sm sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700">
         <form className="space-y-6" action="#" onSubmit={handleSubmit}>
-          <h5 className="text-xl font-medium text-gray-900 dark:text-white">
+          <h5 onClick={handleSubmit} className="text-xl font-medium text-gray-900 dark:text-white">
             Sign in to our platform
           </h5>
           <div>
