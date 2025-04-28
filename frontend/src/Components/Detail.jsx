@@ -1,13 +1,19 @@
 "use client";
+import { addToCart } from "@/Redux/cartSlice";
 import { fetchProductById } from "@/Redux/productsSlice";
-import Link from "next/link";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import ShoppingCart from "./ShoppingCart";
 
 const Detail = ({ productId }) => {
   const dispatch = useDispatch();
   const { product, loading, error } = useSelector((state) => state.products);
+  const [showCart, setShowCart] = useState(false);
 
+  const handleAddToCart = () => {
+    dispatch(addToCart(product))
+    setShowCart(true) //aficher le panier
+  }
   useEffect(() => {
     console.log("Product ID:", productId); // 👈 log pour vérifier
 
@@ -15,6 +21,7 @@ const Detail = ({ productId }) => {
       dispatch(fetchProductById(productId));
     }
   }, [dispatch, productId]);
+
 
   useEffect(() => {
     console.log("Produit récupéré depuis Redux:", product);
@@ -26,6 +33,7 @@ const Detail = ({ productId }) => {
 
   return (
     <>
+    {showCart && <ShoppingCart/>}
       <div className="text-gray-600 body-font overflow-hidden">
         <div className="container px-5 py-24 mx-auto">
           <div className="lg:w-4/5 mx-auto flex flex-wrap">
@@ -169,9 +177,9 @@ const Detail = ({ productId }) => {
                   {product.price} CFA
                 </span>
                 
-                <Link href={`/Shopping`} className="flex ml-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded">
-                  Add To Card
-                </Link>
+                <button onClick={handleAddToCart} className="flex ml-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded">
+                  ajouter au panier
+                </button>
                 
                 <button className="rounded-full w-10 h-10 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-gray-500 ml-4">
                   <svg

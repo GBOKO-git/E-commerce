@@ -1,13 +1,16 @@
-
 const { createSlice } = require("@reduxjs/toolkit");
 
 // l'etat initial du panier
 const initialState = {
-  cartItems: [], // TABLEAU DES PRODUITS DU PANIER
+  cartItems:
+    typeof window !== "undefined" && localStorage.getItem("cartItems")
+      ? JSON.parse(localStorage.getItem("cartItems"))
+      : [], // TABLEAU DES PRODUITS DU PANIER
+
   shippingAddress: {},
   totalQuantity: 0,
   totalPrice: 0,
-  paymentMethode: null,
+  savePaymentMethod: null,
 };
 
 const cartSlice = createSlice({
@@ -27,6 +30,11 @@ const cartSlice = createSlice({
 
       state.totalQuantity += 1;
       state.totalPrice += item.price;
+
+      // ➡️ SAUVEGARDER LE NOUVEAU PANIER DANS LE LOCALSTORAGE
+      if (typeof window !== "undefined") {
+        localStorage.setItem("cartItems", JSON.stringify(state.cartItems));
+      }
     },
 
     // Supprimer un produit du panier
@@ -38,6 +46,10 @@ const cartSlice = createSlice({
         state.totalQuantity -= item.quantity;
         state.totalPrice -= item.quantity * item.price;
         state.cartItems = state.cartItems.filter((i) => i._id !== id);
+      };
+
+      if (typeof window !== 'undefined') {
+        localStorage.setItem('cartItems', JSON.stringify([]));
       }
     },
 
@@ -46,11 +58,15 @@ const cartSlice = createSlice({
       state.cartItems = [];
       state.totalPrice = 0;
       state.totalQuantity = 0;
+
+      if (typeof window !== 'undefined') {
+        localStorage.setItem('cartItems', JSON.stringify([]));
+      }
     },
 
     // Choisir le mode paiement
-    savePaymentMtehod: (state, action) => {
-      state.paymentMethode = action.payload;
+    savePaymentMethod: (state, action) => {
+      state.savePaymentMethod = action.payload;
     },
 
     // Enregisytrer l'adresse de l'acheteur
@@ -68,7 +84,6 @@ export const {
   savePaymentMethod,
   saveShippingAddress,
 } = cartSlice.actions;
-
 
 // Eport du reducer pour pouvoir l'utiliser dans le store
 export default cartSlice.reducer;

@@ -54,5 +54,17 @@ const userSlice = createSlice({
       });
   },
 });
+
+// Pour récupérer l'utilisateur de localStorage côté client
+export const getUserFromStorage = () => (dispatch) => {
+  if (typeof window !== "undefined") {
+    const user = JSON.parse(localStorage.getItem("user"));
+    const token = localStorage.getItem("token");
+
+    if (user && token) {
+      dispatch(setUserFromStorage({ user, token }));
+    }
+  }
+};
 export const { logout, setUserFromStorage } = userSlice.actions;
 export default userSlice.reducer;

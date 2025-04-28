@@ -4,7 +4,7 @@ const Order = require('../models/order');
 // logique  pour passer une commande
 const postOrder = async (req, res) => {
   const {
-    iterms,
+    items,
     shippingAddress,
     toxPrice,
     shippingPrice,
@@ -12,13 +12,13 @@ const postOrder = async (req, res) => {
     paymentMethod,
   } = req.body;
 
-  if (!iterms && iterms.length === 0) {
+  if (!items && items.length === 0) {
     res.status(404).json({ message: "aucun article dans la commande" });
   }
 
   const order = new Order({
     user: req.user._id,
-    iterms,
+    items,
     shippingAddress,
     toxPrice,
     shippingPrice,
@@ -30,7 +30,7 @@ const postOrder = async (req, res) => {
   res.status(201).json(createdOreder);
 };
 
-// logique POUR SUVEGARDER LE RESLTAT DE PAIEMENT
+// logique POUR SUVEGARDER LE RESULTAT DE PAIEMENT
 const payOrder = async (req, res) => {
 
   const order = await Order.findById(req.params.id);

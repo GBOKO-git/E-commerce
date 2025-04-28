@@ -5,20 +5,32 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
 import { useState } from "react";
+import { setSearchQuery } from "@/Redux/productsSlice";
+// import ShoppingCart from "./ShoppingCart";
 
 const Header = () => {
   const router = useRouter();
   const dispatch = useDispatch();
   const loginUser = useSelector((state) => state.user) || {};
+  const cartItems = useSelector((state) => state.cart.cartItems) || {}; // RECUPERE le nombre de produits dans le panier
   const { user } = loginUser;
   const [menuOpen, setMenuOpen] = useState(false);
+
+  const handleSearchChange = (e) => {
+    dispatch(setSearchQuery(e.target.value)); // Met à jour la query dans le Redux store
+  };
 
   const handleLogout = (e) => {
     e.preventDefault();
     dispatch(logout());
     localStorage.removeItem("token");
-    router.push("/Login");
+    router.push("/");
   };
+
+  const handleAddToCart = () => {
+    router.push("/ShoppingCartItems");
+  };
+  const productInCart = cartItems.reduce((acc, item) => acc + item.quantity, 0);
 
   return (
     <nav className="bg-green-800 fixed top-0 w-full border-b border-gray-200 dark:bg-gray-900 z-50">
@@ -32,7 +44,10 @@ const Header = () => {
         {/* Mobile burger menu */}
         <div className="flex items-center space-x-4">
           {/* Panier visible même en mobile */}
-          <Link href="/cart" className="relative">
+          <button
+            // onClick={() => setOpen(true)} // permet d'acceder au shopingCart
+            className="relative"
+          >
             <svg
               xmlns="http://www.w3.org/2000/svg"
               fill="none"
@@ -40,6 +55,7 @@ const Header = () => {
               strokeWidth={1.5}
               stroke="currentColor"
               className="w-8 h-8"
+              onClick={handleAddToCart}
             >
               <path
                 strokeLinecap="round"
@@ -47,14 +63,21 @@ const Header = () => {
                 d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z"
               />
             </svg>
-          </Link>
+          </button>
+          <p>{productInCart}</p>
+          {/* <ShoppingCart open={open} setOpen={setOpen}/> */}
 
           {/* Burger pour mobile */}
           <button
             onClick={() => setMenuOpen(!menuOpen)}
             className="md:hidden text-white focus:outline-none"
           >
-            <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg
+              className="w-8 h-8"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
               <path
                 strokeLinecap="round"
                 strokeLinejoin="round"
@@ -99,11 +122,13 @@ const Header = () => {
                 </svg>
               </div>
               <input
+                onChange={handleSearchChange}
                 type="search"
                 className="block w-full p-2 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500"
                 placeholder="Search products..."
               />
               <button
+              disabled={true}
                 type="submit"
                 className="absolute right-2 bottom-1.5 bg-blue-700 text-white px-4 py-1 rounded hover:bg-blue-800 text-sm"
               >
@@ -127,10 +152,16 @@ const Header = () => {
             </select>
           ) : (
             <div className="flex items-center space-x-5">
-              <Link href="/Register" className="text-sm text-blue-400 hover:underline">
+              <Link
+                href="/Register"
+                className="text-sm text-blue-400 hover:underline"
+              >
                 Inscription
               </Link>
-              <Link href="/Login" className="text-sm text-blue-400 hover:underline">
+              <Link
+                href="/Login"
+                className="text-sm text-blue-400 hover:underline"
+              >
                 Connection
               </Link>
             </div>
@@ -142,12 +173,20 @@ const Header = () => {
           <div className="w-full md:hidden mt-4 space-y-4">
             <ul className="flex flex-col font-medium space-y-4 text-lg">
               <li>
-                <Link href="/" className="hover:underline" onClick={() => setMenuOpen(false)}>
+                <Link
+                  href="/"
+                  className="hover:underline"
+                  onClick={() => setMenuOpen(false)}
+                >
                   Home
                 </Link>
               </li>
               <li>
-                <Link href="/products" className="hover:underline" onClick={() => setMenuOpen(false)}>
+                <Link
+                  href="/products"
+                  className="hover:underline"
+                  onClick={() => setMenuOpen(false)}
+                >
                   Produits
                 </Link>
               </li>
@@ -178,11 +217,19 @@ const Header = () => {
               </div>
             ) : (
               <div className="flex flex-col space-y-2">
-                <Link href="/Register" className="text-blue-400 hover:underline" onClick={() => setMenuOpen(false)}>
-                  Sign up
+                <Link
+                  href="/Register"
+                  className="text-blue-400 hover:underline"
+                  onClick={() => setMenuOpen(false)}
+                >
+                  Inscription
                 </Link>
-                <Link href="/Login" className="text-blue-400 hover:underline" onClick={() => setMenuOpen(false)}>
-                  Login
+                <Link
+                  href="/Login"
+                  className="text-blue-400 hover:underline"
+                  onClick={() => setMenuOpen(false)}
+                >
+                  Connexion
                 </Link>
               </div>
             )}
