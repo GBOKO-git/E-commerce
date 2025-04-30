@@ -1,6 +1,4 @@
 "use client"
-// src/components/paypalButton.jsx
-// import { createContext } from 'react';
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
 
 const PayPalButton = () => {

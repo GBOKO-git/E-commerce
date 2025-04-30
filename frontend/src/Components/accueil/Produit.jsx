@@ -34,10 +34,6 @@ const Produit = () => {
         ) : (
           <h1 className="text-4xl font-serif min-h-screen text-yellow-600">Aucun produit trouvé</h1>
         )}
-
-        {/* {items.map((produit, index) => (
-          <ProductCard produit={produit} key={index} />
-        ))} */}
       </div>
     </>
   );

@@ -6,12 +6,8 @@ const Footer = () => {
           <div className="md:flex md:justify-between">
             <div className="mb-6 md:mb-0">
               <a href="https://AZshop.com/" className="flex items-center">
-                <img
-                  src="/logo/ecme.png"
-                  className="h-8 me-3"
-                  alt="AZshop Logo"
-                />
-                <span className="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">
+                <img src="/logo/ecme.png" className="h-8 me-3" alt="AZshop" />
+                <span className="self-center text-2xl text-slate-200 font-semibold whitespace-nowrap dark:text-white">
                   AZshop
                 </span>
               </a>
@@ -44,7 +40,8 @@ const Footer = () => {
                 <ul className="text-gray-500 dark:text-gray-400 font-medium">
                   <li className="mb-4">
                     <a
-                      href="https://github.com/themesberg/AZshop"
+                      target="_blank"
+                      href="https://github.com/GBOKO-git"
                       className="hover:underline "
                     >
                       Github
@@ -52,7 +49,8 @@ const Footer = () => {
                   </li>
                   <li>
                     <a
-                      href="https://discord.gg/4eeurUVvTy"
+                      target="_blank"
+                      href="https://discord.com/channels/@me"
                       className="hover:underline"
                     >
                       Discord
@@ -90,7 +88,9 @@ const Footer = () => {
             </span>
             <div className="flex mt-4 sm:justify-center sm:mt-0">
               <a
-                href="#"
+                target="_blank"
+                rel="noopener noreferrer"
+                href="https://www.facebook.com/amara.gbokoazoumanan"
                 className="text-gray-500 hover:text-gray-900 dark:hover:text-white"
               >
                 <svg
@@ -109,7 +109,8 @@ const Footer = () => {
                 <span className="sr-only">Facebook page</span>
               </a>
               <a
-                href="#"
+              target="_blank"
+                href="https://discord.gg/ZpqywS2Z"
                 className="text-gray-500 hover:text-gray-900 dark:hover:text-white ms-5"
               >
                 <svg
@@ -124,7 +125,7 @@ const Footer = () => {
                 <span className="sr-only">Discord community</span>
               </a>
               <a
-                href="#"
+                href="https://x.com/AmaraGboko"
                 className="text-gray-500 hover:text-gray-900 dark:hover:text-white ms-5"
               >
                 <svg
@@ -143,7 +144,8 @@ const Footer = () => {
                 <span className="sr-only">Twitter page</span>
               </a>
               <a
-                href="#"
+                target="_blank"
+                href="https://github.com/GBOKO-git"
                 className="text-gray-500 hover:text-gray-900 dark:hover:text-white ms-5"
               >
                 <svg

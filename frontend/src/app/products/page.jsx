@@ -3,22 +3,7 @@ import { LeftImage } from "@/Components/Images";
 const Products = () => {
   return (
     <>
-      {/* <div className="w-screen h-screen">
-        <h1>Bienvenue sur notre site de produits agricoles</h1>
-
-        <div className="min-h-screen  flex-wrap text-2xl text-black ">
-          {LeftImage.map((image, index) => (
-            <img
-              key={index}
-              className="flex"
-              src={image.Image}
-              alt={image.name}
-              width={400}
-              height={400}
-            ></img>
-          ))}
-        </div>
-      </div> */}
+  
 
       <h1 className=" mt-10 md:mt-15 text-center text-3xl font-bold py-4 bg-amber-100 text-gray-800 rounded-md shadow-md fixed top-0 z-10 w-full">
         Quelques produits de chez nous

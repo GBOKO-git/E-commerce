@@ -3,14 +3,25 @@
 "use client";
 import { loginUser } from "@/Redux/user/userActions";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { useState } from "react";
-import { useDispatch } from "react-redux";
+import {  useRouter, useSearchParams } from "next/navigation";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 
 const LogIn = () => {
   const dispatch = useDispatch();
   const router = useRouter();
   const [form, setForm] = useState({ email: "", password: "" });
+  const user = useSelector((state) => state.user.user); // ou selon ton state
+  const searchParams = useSearchParams(); // Redirection dynamique
+const redirect = searchParams.get("redirect") || "/"
+
+  useEffect(() => {
+    if (user) {
+      router.push(redirect); // rediriger si déjà connecté
+    }
+  }, [user, router, redirect]);
+
+
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -29,7 +40,7 @@ const LogIn = () => {
       if (result.meta.requestStatus === "fulfilled") {
         // alert("Vous êtes connecté !");
         // Redirection vers la page d'accueil après la connexion
-        router.push("/products");
+        router.push(redirect);
       } else {
         alert("Connexion échouée. Veuillez vérifier vos identifiants.");
       }

@@ -150,7 +150,7 @@ useEffect(() => {
             <select
               onChange={(e) => {
                 if (e.target.value === "logout") handleLogout(e);
-                if (e.target.value === "dashboard") router.push("/dashboard");
+                if (e.target.value === "dashboard") router.push("/");
               }}
               className="rounded border py-2 px-3 bg-white text-black focus:outline-none"
             >

@@ -6,7 +6,7 @@ import { loginUser, registerUser } from "./userActions";
 const userSlice = createSlice({
   name: "user",
   initialState: {
-    name: null,
+    user:null,
     token: null,
     loading: null,
     error: null,
