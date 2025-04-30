@@ -1,6 +1,6 @@
 
 "use client"
-import Detail from "@/Components/Detail";
+import Detail from "@/Components/productDetail/Detail";
 import { useParams } from "next/navigation";
 
 const ProductDetail = () => {

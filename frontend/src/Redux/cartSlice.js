@@ -21,21 +21,21 @@ const cartSlice = createSlice({
     addToCart: (state, action) => {
       const item = action.payload;
       const existingItem = state.cartItems.find((i) => i._id === item._id);
-
+    
       if (existingItem) {
-        existingItem.quantity += 1;
+        existingItem.quantity += item.quantity;
       } else {
-        state.cartItems.push({ ...item, quantity: 1 });
+        state.cartItems.push({ ...item });
       }
-
-      state.totalQuantity += 1;
-      state.totalPrice += item.price;
-
-      // ➡️ SAUVEGARDER LE NOUVEAU PANIER DANS LE LOCALSTORAGE
+    
+      state.totalQuantity += item.quantity;
+      state.totalPrice += item.price * item.quantity;
+    
       if (typeof window !== "undefined") {
         localStorage.setItem("cartItems", JSON.stringify(state.cartItems));
       }
     },
+    
 
     // Supprimer un produit du panier
     removeToCart: (state, action) => {

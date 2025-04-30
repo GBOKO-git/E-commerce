@@ -1,4 +1,4 @@
-import Index from "./Accueil/page";
+import Index from "./accueil/page";
 
 
 export default function Home() {

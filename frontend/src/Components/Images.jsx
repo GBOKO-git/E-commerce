@@ -41,11 +41,11 @@ export const RigthImage = [
   
   export const LeftImage = [
     {
-      name: "hevea",
+      name: " champ d'hevea",
       Image: "/produits/hevea.jpg",
     },
     {
-      name: "roucou",
+      name: "champ de roucou",
       Image: "/produits/roucou.webp",
     },
     {
@@ -53,27 +53,27 @@ export const RigthImage = [
       Image: "/produits/riz.jpg",
     },
     {
-      name: "anacarde",
+      name: "champ de cajou",
       Image: "/produits/anacarde.webp",
     },
     {
-      name: "cacao",
+      name: "champ de cacao",
       Image: "/produits/cacao.jpg",
     },
     {
-      name: "cafier",
+      name: "champ de cafier",
       Image:"/produits/cafe.avif",
     },
     {
-      name: "chou",
+      name: "champ de chou",
       Image: "/produits/chou.ch.jpg",
     },
     {
-      name: "chou",
+      name: "champ de manioc",
       Image: "/produits/manioc.ch.jpg",
     },
     {
-      name: "plantain",
+      name: "champ de la banane plantain",
       Image: "/produits/plantain.webp",
     }
   ];

@@ -3,17 +3,23 @@ import { addToCart } from "@/Redux/cartSlice";
 import { fetchProductById } from "@/Redux/productsSlice";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import ShoppingCart from "./ShoppingCart";
+import ShoppingCart from "../ShoppingCart";
 
 const Detail = ({ productId }) => {
   const dispatch = useDispatch();
   const { product, loading, error } = useSelector((state) => state.products);
   const [showCart, setShowCart] = useState(false);
+  const [quantity, setQuantity] = useState(1);
+
+
+  const handleQuantityChange = (e) => {
+    setQuantity(Number(e.target.value));
+  };
 
   const handleAddToCart = () => {
-    dispatch(addToCart(product))
-    setShowCart(true) //aficher le panier
-  }
+    dispatch(addToCart({...product, quantity}));
+    setShowCart(true); //aficher le panier
+  };
   useEffect(() => {
     console.log("Product ID:", productId); // 👈 log pour vérifier
 
@@ -21,7 +27,6 @@ const Detail = ({ productId }) => {
       dispatch(fetchProductById(productId));
     }
   }, [dispatch, productId]);
-
 
   useEffect(() => {
     console.log("Produit récupéré depuis Redux:", product);
@@ -33,7 +38,7 @@ const Detail = ({ productId }) => {
 
   return (
     <>
-    {showCart && <ShoppingCart/>}
+      {showCart && <ShoppingCart/>}
       <div className="text-gray-600 body-font overflow-hidden">
         <div className="container px-5 py-24 mx-auto">
           <div className="lg:w-4/5 mx-auto flex flex-wrap">
@@ -148,14 +153,18 @@ const Detail = ({ productId }) => {
               <p className="leading-relaxed">{product.description}</p>
               <div className="flex mt-6 items-center pb-5 border-b-2 border-gray-100 mb-5">
                 <div className="flex ml-6 items-center">
-                  <span className="mr-3">kg</span>
+                  <label className="text-gray-500">quantité :</label>
+                  
                   <div className="relative">
-                    <select className="rounded border appearance-none border-gray-300 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-200 focus:border-indigo-500 text-base pl-3 pr-10">
-                      <option>1</option>
-                      <option>2</option>
-                      <option>3</option>
-                      <option>4</option>
+                    <select 
+                    value={quantity}
+                    onChange={handleQuantityChange}
+                    className="rounded border  border-gray-300 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-200 focus:border-indigo-500 text-base pl-3 pr-10">
+                      {[...Array(10)].map((_, index) => (
+                        <option value={index + 1} key={index + 1}>{index + 1}</option>
+                      ))}
                     </select>
+                    <span className="mr-3">kg</span>
                     <span className="absolute right-0 top-0 h-full w-10 text-center text-gray-600 pointer-events-none flex items-center justify-center">
                       <svg
                         fill="none"
@@ -176,11 +185,14 @@ const Detail = ({ productId }) => {
                 <span className="title-font font-medium text-2xl text-gray-900">
                   {product.price} CFA
                 </span>
-                
-                <button onClick={handleAddToCart} className="flex ml-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded">
+
+                <button
+                  onClick={handleAddToCart}
+                  className="flex ml-auto text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded hover:cursor-pointer"
+                >
                   ajouter au panier
                 </button>
-                
+
                 <button className="rounded-full w-10 h-10 bg-gray-200 p-0 border-0 inline-flex items-center justify-center text-gray-500 ml-4">
                   <svg
                     fill="currentColor"

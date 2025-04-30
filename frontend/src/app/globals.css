@@ -3,6 +3,9 @@
 @source "../../.flowbite-react/class-list.json";
 
 
+@tailwind utilities;
+
+
 
 :root {
   --background: #ffffff;

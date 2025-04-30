@@ -1,9 +1,9 @@
 "use client";
 import { useDispatch, useSelector } from "react-redux";
-import { ProductCard } from "./productCard";
 // import products from "./Products";
 import { useEffect } from "react";
 import { fetchProducts } from "@/Redux/productsSlice";
+import { ProductCard } from "../productCard";
 
 const Produit = () => {
   const dispatch = useDispatch();
@@ -26,7 +26,7 @@ const Produit = () => {
 
   return (
     <>
-      <div className="flex flex-wrap gap-3 items-center justify-center">
+      <div className="flex flex-wrap gap-3 items-center justify-center ">
         {filteredProduct.length > 0 ? (
           filteredProduct.map((produit, index) => (
             <ProductCard produit={produit} key={index} />
