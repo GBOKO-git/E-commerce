@@ -21,7 +21,7 @@ const Produit = () => {
     dispatch(fetchProducts());
   }, [dispatch]);
 
-  if (loading) return <p>Chargement...</p>;
+  if (loading) return <p>Chargement en cours...</p>;
   if (error) return <p>erreur: {error}</p>;
 
   return (
