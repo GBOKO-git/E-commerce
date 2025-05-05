@@ -13,8 +13,7 @@ import { removeToCart, clearCart } from "@/Redux/cartSlice";
 import Link from "next/link";
 import { setUserFromStorage } from "@/Redux/user/userSlice";
 
-const ShoppingCart = () => {
-  const [open, setOpen] = useState(true);
+const ShoppingCart = ({ open, setOpen }) => {
   const cartItems = useSelector((state) => state.cart.cartItems);
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user.user);  // Utilise useSelector pour récupérer l'utilisateur du store Redux

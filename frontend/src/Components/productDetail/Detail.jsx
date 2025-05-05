@@ -33,13 +33,13 @@ const Detail = ({ productId }) => {
     console.log("Produit récupéré depuis Redux:", product);
   }, [product]);
 
-  if (loading) <Loader/>;
+  if (loading) <Loader />;
   if (error) return <div>erreur: {error}</div>;
   if (!product) return <div>Produit non trouvé..!</div>;
 
   return (
     <>
-      {showCart && <ShoppingCart/>}
+      {showCart && <ShoppingCart open={showCart} setOpen={setShowCart} />}
       <div className="text-gray-600 body-font overflow-hidden">
         <div className="container px-5 py-24 mx-auto">
           <div className="lg:w-4/5 mx-auto flex flex-wrap">

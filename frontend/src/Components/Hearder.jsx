@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import { setSearchQuery } from "@/Redux/productsSlice";
+import ShoppingCart from "./ShoppingCart";
 // import ShoppingCart from "./ShoppingCart";
 
 const Header = () => {
@@ -16,6 +17,7 @@ const Header = () => {
   const { user } = loginUser;
   const [menuOpen, setMenuOpen] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
+  const [showCart, setShowCart] = useState(false)
 
   useEffect(() => {
     setIsMounted(true);
@@ -25,6 +27,11 @@ const Header = () => {
     dispatch(setSearchQuery(e.target.value)); // Met à jour la query dans le Redux store
   };
 
+
+  const handleAddToCart = () => {
+    setShowCart(true)
+  }
+
   const handleLogout = (e) => {
     e.preventDefault();
     dispatch(logout());
@@ -32,9 +39,9 @@ const Header = () => {
     router.push("/");
   };
 
-  const handleAddToCart = () => {
-    router.push("/ShoppingCartItems");
-  };
+  // const handleAddToCart = () => {
+  //   router.push("/ShoppingCartItems");
+  // };
 
   const productInCart = cartItems.reduce((acc, item) => acc + item.quantity, 0);
 
@@ -243,6 +250,7 @@ const Header = () => {
           </div>
         )}
       </div>
+      {showCart && <ShoppingCart open={showCart} setOpen={setShowCart}/>}
     </nav>
   );
 };
