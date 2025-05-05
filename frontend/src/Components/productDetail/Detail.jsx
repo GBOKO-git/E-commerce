@@ -4,6 +4,7 @@ import { fetchProductById } from "@/Redux/productsSlice";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import ShoppingCart from "../ShoppingCart";
+import Loader from "../Skeleton/SkeletonLoader";
 
 const Detail = ({ productId }) => {
   const dispatch = useDispatch();
@@ -32,7 +33,7 @@ const Detail = ({ productId }) => {
     console.log("Produit récupéré depuis Redux:", product);
   }, [product]);
 
-  if (loading) return <div>Chargement...</div>;
+  if (loading) <Loader/>;
   if (error) return <div>erreur: {error}</div>;
   if (!product) return <div>Produit non trouvé..!</div>;
 

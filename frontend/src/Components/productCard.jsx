@@ -73,9 +73,12 @@ export const ProductCard = ({ produit }) => {
               </span>
             </div>
             <div className="flex items-center justify-between">
+              <div className="flex gap-5">
               <span className="text-3xl font-bold text-gray-900 dark:text-white">
-                {price}
+                {price} 
               </span>
+              <span className="font-serif mt-2">CFA</span>
+              </div>
               <Link href={`/product/${_id}`} >
               <button
                 

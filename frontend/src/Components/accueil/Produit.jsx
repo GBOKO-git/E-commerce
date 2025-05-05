@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import { fetchProducts } from "@/Redux/productsSlice";
 import { ProductCard } from "../productCard";
+import Loader from "../Skeleton/SkeletonLoader";
 
 const Produit = () => {
   const dispatch = useDispatch();
@@ -21,7 +22,8 @@ const Produit = () => {
     dispatch(fetchProducts());
   }, [dispatch]);
 
-  if (loading) return <p>Chargement en cours...</p>;
+  if (loading) <Loader/>;
+  
   if (error) return <p>erreur: {error}</p>;
 
   return (

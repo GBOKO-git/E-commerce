@@ -14,7 +14,7 @@ const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
 });
-
+const dynamiqueFooter = "min-h-screen flex flex-col"
 export const metadata = {
   title: "AZshop",
   description: "Ma première plateforme e-commerce",
@@ -24,12 +24,12 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased ${dynamiqueFooter}`}
       >
         <Providers>
           <InitUser/>
           <Header />
-          {children}
+          <main className="flex-grow">{children}</main>
           <Footer />
         </Providers>
       </body>
