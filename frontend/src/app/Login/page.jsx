@@ -1,3 +1,4 @@
+"use client"
 import LogIn from "@/Components/SingIn";
 
 const Login = () => {
