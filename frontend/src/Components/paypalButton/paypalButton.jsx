@@ -1,9 +1,21 @@
 "use client"
 import { PayPalScriptProvider, PayPalButtons } from "@paypal/react-paypal-js";
+import { useEffect, useState } from "react";
 
 const PayPalButton = () => {
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    // Marquer comme monté côté client
+    setIsClient(true);
+  }, []);
+
+  if (!isClient) {
+    // Rien n'est rendu côté serveur
+    return null;
+  }
   return (
-    <PayPalScriptProvider options={{ "client-id": "AbqrW4jWQCpoc_f_ZC_rwLDCvAHpTWu6YDkOHqrgBiStsEC3sy-oe0IAsZp-7nPxUPZbsQRxWeSlRxyN" }}>
+    <PayPalScriptProvider options={{ "client-id": `${process.env.NEXT_PUBLIC_PAYPAL_CLIENT_ID}` }}>
       <div>
         <h3>Effectuer un paiement</h3>
         <PayPalButtons

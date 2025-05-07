@@ -32,5 +32,5 @@ app.use('/order', orderRouter)
 mongodbConnection();
 const PORT = process.env.PORT || 9000
 app.listen(PORT, () => {
-    console.log(`Le server est lancé sur ${PORT}`)
+    console.log(`Le server est lancé sur http://localhost:${PORT}`)
 })

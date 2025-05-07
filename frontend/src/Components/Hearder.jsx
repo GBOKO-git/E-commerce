@@ -46,7 +46,7 @@ const Header = () => {
 
   return (
     <nav className="bg-green-800 fixed top-0 w-full border-b border-gray-200 dark:bg-gray-900 z-50">
-      <div className="flex flex-wrap items-center justify-between mx-auto max-w-screen-xl px-4 py-3 text-white">
+      <div className="flex flex-wrap items-center justify-between mx-auto max-w-screen-xl px-4 py-3 text-white relative">
         {/* Logo */}
         <Link href="/" className="flex items-center space-x-3">
           <img src="/logo/ecme.png" className="h-8" alt="AZshop Logo" />
@@ -128,168 +128,110 @@ const Header = () => {
               </div>
             )}
           </div>
-
-          {/* Mobile burger menu */}
-          <div className="flex items-center space-x-1">
-            {/* Panier visible même en mobile */}
-            <div
-              // onClick={() => setOpen(true)} // permet d'acceder au shopingCart
-              className="cursor-pointer "
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={1.5}
-                stroke="currentColor"
-                className="w-8 h-8"
-                onClick={handleAddToCart}
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z"
-                />
-              </svg>
-            </div>
-            {isMounted && productInCart > 0 && (
-              <span className=" bg-red-600 text-white text-xs font-bold rounded-full px-2 py-0.5">
-                {productInCart}
-              </span>
-            )}
-
-            {/* <ShoppingCart open={open} setOpen={setOpen}/> */}
-
-            {/* Burger pour mobile */}
-            <button
-              onClick={() => setMenuOpen(!menuOpen)}
-              className="md:hidden text-white focus:outline-none"
-            >
-              <svg
-                className="w-8 h-8"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M4 6h16M4 12h16M4 18h16"
-                />
-              </svg>
-            </button>
-          </div>
         </div>
-      </div>
-      {/* Menu Mobile */}
-      {menuOpen && (
-        <div className="w-full md:hidden mt-4 space-y-4">
-          <ul className="flex flex-col font-medium space-y-4 text-lg">
-            <li>
-              <Link
-                href="/"
-                className="hover:underline"
-                onClick={() => setMenuOpen(false)}
-              >
-                Home
-              </Link>
-            </li>
-          </ul>
-          {/* Mobile burger menu */}
-          <div className="flex items-center space-x-1">
+
+        {/* Mobile burger menu */}
+        {/* <div className="flex items-center space-x-1">
             {/* Panier visible même en mobile */}
-            <div
-              // onClick={() => setOpen(true)} // permet d'acceder au shopingCart
-              className="cursor-pointer "
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                strokeWidth={1.5}
-                stroke="currentColor"
-                className="w-8 h-8"
-                onClick={handleAddToCart}
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z"
-                />
-              </svg>
-            </div>
-            {isMounted && productInCart > 0 && (
-              <span className=" bg-red-600 text-white text-xs font-bold rounded-full px-2 py-0.5">
-                {productInCart}
-              </span>
-            )}
+        <div
+          // onClick={() => setOpen(true)} // permet d'acceder au shopingCart
+          className="cursor-pointer md:absolute md:top-1 md:right-1"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth={1.5}
+            stroke="currentColor"
+            className="w-8 h-8"
+            onClick={handleAddToCart}
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M2.25 3h1.386c.51 0 .955.343 1.087.835l.383 1.437M7.5 14.25a3 3 0 0 0-3 3h15.75m-12.75-3h11.218c1.121-2.3 2.1-4.684 2.924-7.138a60.114 60.114 0 0 0-16.536-1.84M7.5 14.25 5.106 5.272M6 20.25a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Zm12.75 0a.75.75 0 1 1-1.5 0 .75.75 0 0 1 1.5 0Z"
+            />
+          </svg>
+        </div>
+        {isMounted && productInCart > 0 && (
+          <span className=" bg-red-600 text-white text-xs font-bold rounded-full px-2 py-0.5 md:absolute md:top-0 md:right-0">
+            {productInCart}
+          </span>
+        )}
 
-            {/* <ShoppingCart open={open} setOpen={setOpen}/> */}
+        {/* <ShoppingCart open={open} setOpen={setOpen}/> */}
 
-            {/* Burger pour mobile */}
-            <button
-              onClick={() => setMenuOpen(!menuOpen)}
-              className=" text-white focus:outline-none"
-            >
-              <svg
-                className="w-8 h-8"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth="2"
-                  d="M4 6h16M4 12h16M4 18h16"
-                />
-              </svg>
-            </button>
-          </div>
-          {/* Utilisateur mobile */}
-          {user ? (
-            <div className="flex flex-col space-y-2">
-              <button
-                onClick={(e) => {
-                  e.preventDefault();
-                  router.push("/dashboard");
-                  setMenuOpen(false);
-                }}
-                className="bg-white text-black rounded px-3 py-2"
-              >
-                Profile
-              </button>
-              <button
-                onClick={(e) => {
-                  handleLogout(e);
-                  setMenuOpen(false);
-                }}
-                className="bg-red-500 text-white rounded px-3 py-2"
-              >
-                Déconnexion
-              </button>
-            </div>
-          ) : (
-            <div className="flex flex-col space-y-2">
-              <Link
-                href="/Register"
-                className="text-blue-400 hover:underline"
-                onClick={() => setMenuOpen(false)}
-              >
-                Inscription
-              </Link>
-              <Link
-                href="/Login"
-                className="text-blue-400 hover:underline"
-                onClick={() => setMenuOpen(false)}
-              >
-                Connexion
-              </Link>
+        {/* Burger pour mobile */}
+        <button
+          onClick={() => setMenuOpen(!menuOpen)}
+          className="md:hidden text-white focus:outline-none"
+        >
+          <svg
+            className="w-8 h-8"
+            fill="none"
+            stroke="currentColor"
+            viewBox="0 0 24 24"
+          >
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              strokeWidth="2"
+              d="M4 6h16M4 12h16M4 18h16"
+            />
+          </svg>
+        </button>
+        {/* </div>  */}
+
+        <div>
+          {menuOpen && (
+            <div className="w-full md:hidden mt-4 space-y-4">
+              {/* Utilisateur mobile */}
+              {user ? (
+                <div className="flex flex-col space-y-2">
+                  <button
+                    onClick={(e) => {
+                      e.preventDefault();
+                      router.push("/dashboard");
+                      setMenuOpen(false);
+                    }}
+                    className="bg-white text-black rounded px-3 py-2"
+                  >
+                    Profile
+                  </button>
+                  <button
+                    onClick={(e) => {
+                      handleLogout(e);
+                      setMenuOpen(false);
+                    }}
+                    className="bg-red-500 text-white rounded px-3 py-2"
+                  >
+                    Déconnexion
+                  </button>
+                </div>
+              ) : (
+                <div className="flex flex-col space-y-2">
+                  <Link
+                    href="/Register"
+                    className="text-blue-400 hover:underline"
+                    onClick={() => setMenuOpen(false)}
+                  >
+                    Inscription
+                  </Link>
+                  <Link
+                    href="/Login"
+                    className="text-blue-400 hover:underline"
+                    onClick={() => setMenuOpen(false)}
+                  >
+                    Connexion
+                  </Link>
+                </div>
+              )}
             </div>
           )}
         </div>
-      )}
+      </div>
+      {/* Menu Mobile */}
+
       {showCart && <ShoppingCart open={showCart} setOpen={setShowCart} />}
     </nav>
   );
