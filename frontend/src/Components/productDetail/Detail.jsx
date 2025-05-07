@@ -33,7 +33,7 @@ const Detail = ({ productId }) => {
     console.log("Produit récupéré depuis Redux:", product);
   }, [product]);
 
-  if (loading) <Loader />;
+  if (loading) return <Loader />;
   if (error) return <div>erreur: {error}</div>;
   if (!product) return <div>Produit non trouvé..!</div>;
 

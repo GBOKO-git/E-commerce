@@ -22,9 +22,14 @@ const Produit = () => {
     dispatch(fetchProducts());
   }, [dispatch]);
 
-  if (loading) <Loader/>;
-  
-  if (error) return <p>erreur: {error}</p>;
+  if (loading) return <div> Chargement en cours...<Loader /></div>;
+
+  if (error)
+    return (
+      <div>
+        erreur: {error} <Loader />{" "}
+      </div>
+    );
 
   return (
     <>
@@ -34,7 +39,15 @@ const Produit = () => {
             <ProductCard produit={produit} key={index} />
           ))
         ) : (
-          <h1 className="text-4xl font-serif min-h-screen text-yellow-600">Aucun produit trouvé</h1>
+          // <h1 className="text-4xl font-serif min-h-screen text-yellow-600 text-center"> Aucun produit trouvé<Loader/></h1>
+          <div className="min-h-screen flex flex-col items-center justify-center text-yellow-600">
+            <h1 className="text-4xl font-serif text-center">
+            Chargement en cours... 
+            </h1>
+            <div className="mt-2 flex items-center gap-2">
+              <Loader />
+            </div>
+          </div>
         )}
       </div>
     </>
