@@ -140,7 +140,9 @@ const ShoppingCart = ({ open, setOpen }) => {
                         href="/ShoppingOrder"
                         className="flex items-center justify-center rounded-md border border-transparent bg-indigo-600 px-6 py-3 text-base font-medium text-white shadow-xs hover:bg-indigo-700"
                       >
+                        <button onClick={() => setOpen(false)} type="button">
                         Passer la commande
+                        </button>
                       </Link>
                     ) : (
                       <Link
